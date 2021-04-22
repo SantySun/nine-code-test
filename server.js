@@ -1,12 +1,17 @@
 const express = require("express")
 const cors = require("cors")
+const bodyparser = require("body-parser")
 const port = process.env.PORT || 5000
 const app = express()
-app.use(express.json());
 app.use(cors());
 
+app.use(function (err, req, res, next) {
+  console.error(err.stack)
+  res.status(400).json({ error: "Could not decode request: JSON parsing failed" })
+})
+app.use(bodyparser.json())
+
 app.post("/", (req, res) => {
-  console.log(req)
   try {
     const { payload } = req.body
     const result = payload.map((show) => {
@@ -20,7 +25,7 @@ app.post("/", (req, res) => {
     }).filter((show) => !!show)
     return res.status(200).json({ response: result })
   } catch (error) {
-    return res.status(400).json({ "error": "Could not decode request: JSON parsing failed" })
+    return res.status(400).json({ error: "Could not decode request: JSON parsing failed" })
   }
 })
 
