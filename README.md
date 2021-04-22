@@ -1,4 +1,4 @@
-### Nine API Coding Test
+### Nine Digital Coding Test
 
 This repo is the proposed answer to Nine Digital's coding test. It has been deployed to Heroku with the following URL:
 
