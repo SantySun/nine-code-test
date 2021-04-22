@@ -27,5 +27,5 @@ app.post("/", (req, res) => {
   }
 })
 
-// httpsServer.listen(4000, () => console.log(`Listening on port 4000`));
+httpsServer.listen(4000, () => console.log(`Listening on port 4000`));
 exports.server = httpsServer
